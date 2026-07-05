@@ -1,0 +1,32 @@
+name: Android EAS Build
+on:
+  workflow_dispatch:
+  push:
+    branches: [ setup/initial ]
+
+jobs:
+  eas-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Enable corepack
+        run: corepack enable && corepack prepare yarn@stable --activate
+
+      - name: Install dependencies
+        run: yarn install --immutable || yarn install
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: EAS build (Android)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          cd apps/mobile
+          eas build --platform android --profile preview --non-interactive
