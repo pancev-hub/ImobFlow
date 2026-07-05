@@ -1,6 +1,6 @@
 # ImobFlow 🏢
 
-> Sistema profissional para imobiliárias integrado ao Kenlo Imob
+> Sistema profissional para imobiliárias
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
@@ -10,7 +10,7 @@
 
 ## 📋 Visão Geral
 
-ImobFlow é um sistema profissional desenvolvido para uso interno de imobiliárias, funcionando em conjunto com o Kenlo Imob sem modificar o CRM existente. A aplicação é composta por:
+ImobFlow é um sistema profissional desenvolvido para uso interno de imobiliárias,trabalhando em conjunto com seu CRM. A aplicação é composta por:
 
 - 📱 **Mobile**: Aplicativo React Native otimizado para corretores
 - 🖥️ **Web**: Dashboard administrativo em React
@@ -341,8 +341,7 @@ Modelos Prisma:
 Para dúvidas ou problemas:
 
 - 📧 Email: fred.pancev@gmail.com
-- 🐛 Issues: GitHub Issues
-- 💬 Discussões: GitHub Discussions
+- 🐛 Issues: (11)944511667
 
 ## 📄 Licença
 
@@ -350,7 +349,7 @@ MIT
 
 ## 👨‍💻 Autor
 
-Desenvolvido por pancev-hub
+By FSM Softwares
 
 ---
 
