@@ -1,0 +1,21 @@
+{
+  "name": "@imobflow/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "dev": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "build:apk": "eas build --platform android --profile preview"
+  },
+  "dependencies": {
+    "expo": "^48.0.0",
+    "react": "18.2.0",
+    "react-native": "0.71.0",
+    "expo-router": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

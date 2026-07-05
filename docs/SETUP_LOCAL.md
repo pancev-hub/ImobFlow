@@ -15,9 +15,10 @@ yarn install
 ```bash
 cp apps/backend/.env.example apps/backend/.env
 cp apps/web/.env.example apps/web/.env
+cp apps/mobile/.env.example apps/mobile/.env
 ```
 
-No arquivo apps/web/.env (Vite), ajuste VITE_API_URL para a URL do backend (por exemplo http://localhost:3000).
+- Observação para mobile: em emuladores Android, use `http://10.0.2.2:3000` para conectar ao host. Se usar Tunnel do Expo, `http://localhost:3000` funciona.
 
 4. Inicie o banco de dados Postgres com Docker Compose:
 
@@ -25,7 +26,7 @@ No arquivo apps/web/.env (Vite), ajuste VITE_API_URL para a URL do backend (por 
 docker-compose up -d
 ```
 
-5. Geração do client do Prisma e migração (backend):
+5. Prisma (backend):
 
 ```bash
 # Gere o client
@@ -33,9 +34,12 @@ yarn workspace @imobflow/backend prisma:generate
 
 # Execute migração de desenvolvimento (criar tabela User definida no schema)
 yarn workspace @imobflow/backend db:migrate
+
+# (opcional) Rode o seed para popular dados iniciais
+yarn workspace @imobflow/backend prisma:seed
 ```
 
-6. Inicie os serviços em desenvolvimento:
+6. Inicie os serviços em desenvolvimento (em terminais separados):
 
 ```bash
 # Backend (API)
@@ -43,13 +47,31 @@ yarn workspace @imobflow/backend dev
 
 # Web (Frontend)
 yarn workspace @imobflow/web dev
+
+# Mobile (Expo)
+cd apps/mobile
+yarn install
+yarn dev
 ```
 
-7. Acesse:
+7. Gerar APK (opções):
+
+Opção A — EAS Build (recomendado, requer conta Expo):
+
+1. Instale EAS CLI: `npm install -g eas-cli`
+2. No diretório apps/mobile, configure `eas.json` conforme docs do Expo.
+3. Execute: `eas build --platform android --profile preview` (irá gerar APK/AAB na nuvem).
+
+Opção B — Build local (requer Android SDK instalado)
+
+1. No apps/mobile, rode `expo prebuild` para gerar arquivos nativos (diretório android/).
+2. Abra o projeto Android no Android Studio e gere o APK via Build > Generate Signed Bundle / APK.
+
+8. Acesse:
 
 - Backend: http://localhost:3000/health
 - Web: normalmente http://localhost:5173 (ou porta exibida pelo Vite)
 
 Observações:
 - O scaffold criado é mínimo para permitir desenvolvimento local e iterativo.
-- Se quiser que eu adicione mobile, Dockerfile para backend, seeds Prisma ou CI, me avise.
+- Se quiser que eu crie Dockerfile de produção, workflow de build com testes, ou configure EAS.json para builds automáticos, eu posso adicionar.

@@ -12,5 +12,16 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
+  backend:
+    image: node:18
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - '3000:3000'
+    command: sh -c "corepack enable && corepack prepare yarn@stable --activate && yarn install --immutable || true && yarn workspace @imobflow/backend dev"
+    depends_on:
+      - db
+
 volumes:
   db-data:
