@@ -10,12 +10,14 @@ Siga estes passos para ter o ambiente de desenvolvimento funcionando:
 yarn install
 ```
 
-3. Configure variáveis de ambiente:
+3. Configure variáveis de ambiente
 
 ```bash
 cp apps/backend/.env.example apps/backend/.env
-cp apps/web/.env.example apps/web/.env  # opcional
+cp apps/web/.env.example apps/web/.env
 ```
+
+No arquivo apps/web/.env (Vite), ajuste VITE_API_URL para a URL do backend (por exemplo http://localhost:3000).
 
 4. Inicie o banco de dados Postgres com Docker Compose:
 

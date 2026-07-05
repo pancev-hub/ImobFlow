@@ -5,7 +5,10 @@ export default function App() {
   const [status, setStatus] = useState<string>('loading')
 
   useEffect(() => {
-    axios.get('/api/health')
+    const apiBase = import.meta.env.VITE_API_URL || ''
+    const url = apiBase ? `${apiBase.replace(/\/$/, '')}/health` : '/health'
+
+    axios.get(url)
       .then(() => setStatus('ok'))
       .catch(() => setStatus('error'))
   }, [])
